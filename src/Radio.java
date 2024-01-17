@@ -107,7 +107,7 @@ public class Radio implements RadioInterface {
         if (this.volume < 100) {
             setVolume(this.volume + 10);
         } else {
-            System.out.println("El volumen está al máximo");
+            setVolume(0);
         }
     }
 
@@ -118,7 +118,7 @@ public class Radio implements RadioInterface {
         if (this.volume > 0) {
             setVolume(this.volume - 10);
         } else {
-            System.out.println("El volumen está al mínimo");
+            setVolume(100);
         }
     }
 
@@ -130,13 +130,13 @@ public class Radio implements RadioInterface {
             if (this.actual < 1610) {
                 setActual(this.actual + 10);
             } else {
-                setActual(530);
+                System.out.println("Ya no hay más estaciones");
             }
         } else if (this.frequency.equals("FM")) {
             if (this.actual < 107.9) {
                 setActual(this.actual + 0.2);
             } else {
-                setActual(87.9);
+                System.out.println("Ya no hay más estaciones");
             }
         }
     }
@@ -149,13 +149,13 @@ public class Radio implements RadioInterface {
             if (this.actual > 530) {
                 setActual(this.actual - 10);
             } else {
-                setActual(1610);
+                System.out.println("Ya no hay más estaciones");
             }
         } else if (this.frequency.equals("FM")) {
             if (this.actual > 87.9) {
                 setActual(this.actual - 0.2);
             } else {
-                setActual(107.9);
+                System.out.println("Ya no hay más estaciones");
             }
         }
     }
