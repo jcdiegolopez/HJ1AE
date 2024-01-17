@@ -32,7 +32,7 @@ public class Radio implements RadioInterface {
      * @return Retorna la estacion actual.
      */
     public double getActual() {
-        return this.actual;
+        return this.volume;
     }
 
     /**
