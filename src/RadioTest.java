@@ -23,10 +23,10 @@ public class RadioTest {
         Radio radio = new Radio();
         double estacionInicial = radio.getActual();
 
-        radio.nextRadio();
+        radio.subirEmisora();
         assertEquals(estacionInicial + 10, radio.getActual(),0.01);
 
-        radio.previousRadio();
+        radio.bajarEmisora();
         assertEquals(estacionInicial, radio.getActual(),0.01); 
     }
     
@@ -37,10 +37,10 @@ public class RadioTest {
         Radio radio = new Radio();
         String frecuenciaInicial = radio.getFrequency();
 
-        radio.changeFrecuency();
+        radio.cambiarBanda();
         assertEquals("FM", radio.getFrequency()); 
 
-        radio.changeFrecuency();
+        radio.cambiarBanda();
         assertEquals(frecuenciaInicial, radio.getFrequency());
     }
 
@@ -49,16 +49,16 @@ public class RadioTest {
     @Test
     public void testGuardarSeleccionarEmisora() {
         Radio radio = new Radio();
-        radio.Onradio();
+        radio.enceder();
 
-        radio.saveRadio();
+        radio.guardarEmisora();
         assertEquals(1, radio.findEmptySlot(0)); 
 
-        radio.changeFrecuency();
-        radio.saveRadio();
+        radio.cambiarBanda();
+        radio.guardarEmisora();
         assertEquals(1, radio.findEmptySlot(1)); 
 
-        radio.changeFrecuency();
+        radio.cambiarBanda();
         radio.selectSaved(1);
         assertEquals(530, radio.getActual(),0.01); 
     }

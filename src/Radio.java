@@ -21,7 +21,7 @@ public class Radio implements RadioInterface {
      *
      * @return true si la radio está encendida, false de lo contrario.
      */
-    public boolean isOn() {
+    public boolean getEncendido() {
         return on;
     }
 
@@ -32,7 +32,7 @@ public class Radio implements RadioInterface {
      * @return Retorna la estacion actual.
      */
     public double getActual() {
-        return this.volume;
+        return this.actual;
     }
 
     /**
@@ -63,7 +63,7 @@ public class Radio implements RadioInterface {
     /**
      * Enciende la radio.
      */
-    public void Onradio() {
+    public void enceder() {
         this.on = true;
         System.out.println("Radio encendida");
     }
@@ -71,7 +71,7 @@ public class Radio implements RadioInterface {
     /**
      * Apaga la radio.
      */
-    public void OffRadio() {
+    public void apagar() {
         this.on = false;
         System.out.println("Radio apagada");
     }
@@ -95,7 +95,7 @@ public class Radio implements RadioInterface {
      *
      * @param value Valor de la estación a establecer.
      */
-    public void setActual(double value) {
+    public void seleccionarEmisora(double value) {
         this.actual = value;
         showActual();
     }
@@ -125,16 +125,16 @@ public class Radio implements RadioInterface {
     /**
      * Cambia a la siguiente estación de radio.
      */
-    public void nextRadio() {
+    public void subirEmisora() {
         if (this.frequency.equals("AM")) {
             if (this.actual < 1610) {
-                setActual(this.actual + 10);
+                seleccionarEmisora(this.actual + 10);
             } else {
                 System.out.println("Ya no hay más estaciones");
             }
         } else if (this.frequency.equals("FM")) {
             if (this.actual < 107.9) {
-                setActual(this.actual + 0.2);
+                seleccionarEmisora(this.actual + 0.2);
             } else {
                 System.out.println("Ya no hay más estaciones");
             }
@@ -144,16 +144,16 @@ public class Radio implements RadioInterface {
     /**
      * Cambia a la estación de radio anterior.
      */
-    public void previousRadio() {
+    public void bajarEmisora() {
         if (this.frequency.equals("AM")) {
             if (this.actual > 530) {
-                setActual(this.actual - 10);
+                seleccionarEmisora(this.actual - 10);
             } else {
                 System.out.println("Ya no hay más estaciones");
             }
         } else if (this.frequency.equals("FM")) {
             if (this.actual > 87.9) {
-                setActual(this.actual - 0.2);
+                seleccionarEmisora(this.actual - 0.2);
             } else {
                 System.out.println("Ya no hay más estaciones");
             }
@@ -163,20 +163,20 @@ public class Radio implements RadioInterface {
     /**
      * Cambia la frecuencia de la radio entre AM y FM.
      */
-    public void changeFrecuency() {
+    public void cambiarBanda() {
         if (this.frequency.equals("FM")) {
             this.frequency = "AM";
-            setActual(530);
+            seleccionarEmisora(530);
         } else if (this.frequency.equals("AM")) {
             this.frequency = "FM";
-            setActual(87.9);
+            seleccionarEmisora(87.9);
         }
     }
 
     /**
      * Guarda la estación actual en un botón preestablecido.
      */
-    public void saveRadio() {
+    public void guardarEmisora() {
         int listIndex = 0;
         if (this.frequency.equals("AM")) {
             listIndex = 0;
@@ -219,7 +219,7 @@ public class Radio implements RadioInterface {
         } else if (this.frequency.equals("FM")) {
             listIndex = 1;
         }
-        System.out.println("-------------------- EMISORAS GUARDADAS EN " + this.actual + " --------------------");
+        System.out.println("-------------------- EMISORAS GUARDADAS EN " + this.frequency + " --------------------");
         for (int i = 0; i < 12; i++) {
             if (this.saved[listIndex][i] != 0.0) {
                 System.out.println((i + 1) + ". " + this.saved[listIndex][i]);
@@ -241,7 +241,7 @@ public class Radio implements RadioInterface {
         }
         double send = this.saved[listIndex][index];
         if (send != 0.0) {
-            setActual(send);
+            seleccionarEmisora(send);
         } else {
             System.out.println("No hay ninguna emisora guardada aquí");
         }

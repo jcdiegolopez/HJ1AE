@@ -14,7 +14,7 @@ public class Tablero {
         
         while (true) {
             // Enciende la radio si está apagada
-            while(!radio.isOn()) {
+            while(!radio.getEncendido()) {
                 System.out.println("La radio está apagada. Enciéndela para realizar funciones.");
                 System.out.println("1. Encender radio");
                 System.out.println("0. Salir");
@@ -24,7 +24,7 @@ public class Tablero {
 
                 switch(option1){
                     case 1:
-                        radio.Onradio();
+                        radio.enceder();
                         break;
                     case 0:
                         System.out.println("Saliendo...");
@@ -61,19 +61,19 @@ public class Tablero {
                     radio.volumeDown();
                     break;
                 case 4:
-                    radio.nextRadio();
+                    radio.subirEmisora();
                     break;
                 case 5:
-                    radio.previousRadio();
+                    radio.bajarEmisora();
                     break;
                 case 6:
-                    radio.changeFrecuency();
+                    radio.cambiarBanda();
                     break;
                 case 7:
                     radio.showSavedRadios();
                     break;
                 case 8:
-                    radio.saveRadio();
+                    radio.guardarEmisora();
                     break;
                 case 9:
                     System.out.print("Ingresa el número de emisora guardada: ");
@@ -81,7 +81,7 @@ public class Tablero {
                     radio.selectSaved(savedIndex - 1);
                     break;
                 case 10:
-                    radio.OffRadio();
+                    radio.apagar();
                     break;
                 case 0:
                     System.out.println("Saliendo...");
